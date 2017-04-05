@@ -220,12 +220,10 @@ ISRHV     CODE    0x0008
 ISRH	CODE     0x0062                ; let linker place high ISR routine
 HIGH_ISR
 ;     <Insert High Priority ISR Here - no SW context saving>
-    INCF   conta
-    BCF    INTCON,2   
     BSF ADCON0,GO
 RETORNO
     BTFSC ADCON0,GO ;Is conversion done?
-    BRA RETORNO
+    goto    RETORNO
     MOVFF  ADRESL,PORTD
     MOVLW   .68
     MOVWF   TMR0L
